@@ -1,0 +1,177 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment/moment';
+import { ProductsService } from '../db-services/products.service';
+
+import * as _ from "lodash";
+
+@Component({
+  selector: 'app-products-form',
+  templateUrl: './products-form.component.html',
+  styleUrls: ['./products-form.component.css']
+})
+export class ProductsFormComponent implements OnInit {
+  productForm: FormGroup;
+  // productTypes = ['Petite Pain', 'Gros Pain'];
+  // emballeuseGrosPain = [1, 2, 3, 4, 5];
+  // emballeusePetitePain = [6, 7, 8, 9, 10, 11];
+  userInfo: any = {};
+
+  alertMessage: any = {
+    message: '',
+    type: 'success'
+  };
+
+  products: any = [];
+  product: any = {};
+  bins: any = [];
+  new: boolean = true;
+
+  constructor(private productsService: ProductsService, private route: ActivatedRoute, private router: Router) {
+
+  }
+
+  ngOnInit() {
+    this.getData();
+    this.createProductsForm();
+  }
+
+  setProductsForm(product) {
+    this.productForm.controls['productId'].setValue(product.productId);
+    this.productForm.controls['productPetitePain'].setValue(product.productPetitePain);
+    this.productForm.controls['productGrosPain'].setValue(product.productGrosPain);
+    this.productForm.controls['emballeuse1'].setValue(product.emballeuse1);
+    this.productForm.controls['emballeuse2'].setValue(product.emballeuse2);
+    this.productForm.controls['emballeuse3'].setValue(product.emballeuse3);
+    this.productForm.controls['emballeuse4'].setValue(product.emballeuse4);
+    this.productForm.controls['emballeuse5'].setValue(product.emballeuse5);
+    this.productForm.controls['emballeuse6'].setValue(product.emballeuse6);
+    this.productForm.controls['emballeuse7'].setValue(product.emballeuse7);
+    this.productForm.controls['emballeuse8'].setValue(product.emballeuse8);
+    this.productForm.controls['emballeuse9'].setValue(product.emballeuse9);
+    this.productForm.controls['emballeuse10'].setValue(product.emballeuse10);
+    this.productForm.controls['emballeuse11'].setValue(product.emballeuse11);
+    this.productForm.controls['variete'].setValue(product.variete);
+    this.productForm.controls['hauteurTray'].setValue(product.hauteurTray);
+    this.productForm.controls['patron'].setValue(product.patron);
+    this.productForm.controls['quantiteEmballage'].setValue(product.quantiteEmballage);
+    this.productForm.controls['typeSac'].setValue(product.typeSac);
+    this.productForm.controls['inactive'].setValue(product.inactive);
+    this.productForm.controls['description'].setValue(product.description);
+  }
+
+  createProductsForm() {
+    this.productForm = new FormGroup(
+      {
+        productId: new FormControl('', this.isProductIdNotExist.bind(this)),
+        productPetitePain: new FormControl(''),
+        productGrosPain: new FormControl(''),
+        emballeuse1: new FormControl(''),
+        emballeuse2: new FormControl(''),
+        emballeuse3: new FormControl(''),
+        emballeuse4: new FormControl(''),
+        emballeuse5: new FormControl(''),
+        emballeuse6: new FormControl(''),
+        emballeuse7: new FormControl(''),
+        emballeuse8: new FormControl(''),
+        emballeuse9: new FormControl(''),
+        emballeuse10: new FormControl(''),
+        emballeuse11: new FormControl(''),
+        variete: new FormControl('', Validators.required),
+        hauteurTray: new FormControl('', Validators.required),
+        patron: new FormControl('', Validators.required),
+        quantiteEmballage: new FormControl('', Validators.required),
+        typeSac: new FormControl('', Validators.required),
+        description: new FormControl('', Validators.required),
+        inactive: new FormControl('', Validators.nullValidator)
+      }
+    );
+  }
+
+  isProductIdNotExist(c: FormControl) {
+    let found = _.find(this.products, { 'productId': c.value })
+    let ret = (found && this.new) ? {
+      present: {
+        valid: false
+      }
+    } : null;
+    return ret;
+  }
+
+  getData() {
+
+    this.productsService.getProducts().subscribe(products => {
+      this.products = products;
+    });
+
+    this.route.params.subscribe(params => {
+      if (params.id != 'new') {
+        this.new = false;
+        this.productsService.getProductById(params.id).subscribe(product => {
+          this.product = product[0];
+          this.setProductsForm(this.product);
+        });
+      }
+    });
+
+  }
+
+  addForm() {
+    this.router.navigate(["/home/products/form/new"]);
+    this.new = true;
+    this.product = {};
+    this.productForm.reset();
+  }
+
+  delete() {
+    this.productsService.delete(this.product.productId).subscribe(data => {
+      this.router.navigate(["/home/products/list"]);
+    }, error => {
+      this.showErrorMsg();
+    });
+  }
+
+  save(form) {
+    if (form.valid) {
+      if (!this.new) {
+        this.productsService.update(form.value).subscribe((product) => {
+          this.new = false;
+          this.showSuccessMsg();
+          this.setProductsForm(product)
+        }, (error) => {
+          this.showErrorMsg();
+        });
+      } else {
+        form.value.position = this.products.length+1;
+        this.productsService.create(form.value).subscribe((product) => {
+          this.new = false;
+          this.products.push(product);
+          this.productForm.markAsPristine();
+          this.showSuccessMsg();
+          this.setProductsForm(product)
+        }, (error) => {
+          this.showErrorMsg();
+        });
+      }
+    }
+  }
+
+  showSuccessMsg() {
+    this.alertMessage.message = "Enregistrements Réussi!"
+    this.alertMessage.type = "success";
+    this.clearMessage(2);
+  }
+
+  showErrorMsg() {
+    this.alertMessage.message = 'Erreur Enregistrement';
+    this.alertMessage.type = 'danger';
+  }
+
+  clearMessage(time) {
+    setTimeout(() => {
+      this.alertMessage.message = ''
+    }, time * 1000);
+  }
+
+}

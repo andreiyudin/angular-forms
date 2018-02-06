@@ -1,0 +1,228 @@
+<form [formGroup]="orderForm" (ngSubmit)="save(orderForm)" novalidate>
+    <div class="container" style="width:100%;margin-top:1em">
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-secondary pull-left" [ngClass]="{'btn-success':orderForm.valid&&orderForm.dirty,'btn-secondary':orderForm.pristine,'btn-danger':!orderForm.valid&&orderForm.touched }">
+            <i class="fa f fa-save"></i>
+          </button>
+        </div>
+        <div class="col">
+          <h3 class="text-center">Ajouter/Éditer Commande</h3>
+        </div>
+        <div class="col">
+          <div class="pull-right">
+            <button type="button" class="btn btn-secondary btn-delete" (click)="delete()">
+              <i class="fa f fa-trash fa-lg"></i>
+            </button>
+            <button type="button" (click)="addForm()" class="btn btn-secondary btn-add">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container py-5">
+        <div class="row">
+            <div class="form-inline col-xs-12 mx-auto">
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse">*Emballeuse:&nbsp;
+                        <input id="emballeuse" class="form-control" type="text" formControleName="emballeuse">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="painsParPaquet">Pains par paquet:&nbsp;
+                        <input id="painsParPaquet" class="form-control" type="text" formControleName="painsParPaquet">
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="produits">*Produits:&nbsp;
+                        <input id="produits" class="form-control" type="text" formControleName="produits">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="aire">Aire:&nbsp;
+                        <input id="aire" class="form-control" type="text" formControleName="aire">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                  </div>                    
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="text" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                        <input id="emballeuse6" class="form-control" type="date" formControleName="emballeuse6">
+                      </label>
+                    </div>
+                  </div>                     
+
+
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="emballeuse">*Emballeuse</label>
+                            <!-- <input type="text" class="form-control" id="emballeuse"> -->
+                            <div>
+                              <select 
+                                id="emballeuse" 
+                                formControlName="emballeuse" 
+                                class="form-control">
+                                <option value="one">1</option>
+                                <option value="two">2</option>
+                                <option value="three">3</option>
+                                <option value="four">4</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="painsParPaquet">Pains par paquet</label>
+                            <input type="text" class="form-control" id="painsParPaquet" formControlName="painsParPaquet" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="produits">*Produits</label>
+                            <input type="text" class="form-control" id="produits" formControlName="produits">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="aire">Aire</label>
+                            <input type="text" class="form-control" id="aire" formControlName="aire" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="quantitePains">*Quantité de pains</label>
+                            <input type="text" class="form-control" id="quantitePains" formControlName="quantitePains">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="typeSac">Type de sac</label>
+                            <input type="text" class="form-control" id="typeSac" formControlName="typeSac" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="priorite">Priorite</label>
+                            <input type="text" class="form-control" id="priorite" formControlName="priorite">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="patron">Patron</label>
+                            <input type="text" class="form-control" id="patron" formControlName="patron" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="couleurKwikLok">Couleur du Kwik-Lok</label>
+                            <input type="text" class="form-control" id="couleurKwikLok" formControlName="couleurKwikLok">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="variete">Variété</label>
+                            <input type="text" class="form-control" id="variete" formControlName="variete" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="dateProduction">Date de production</label>
+                            <input type="date" class="form-control" id="dateProduction" formControlName="dateProduction">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="recette">Recette</label>
+                            <input type="text" class="form-control" id="recette" formControlName="recette" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="dateVente">Date de vente</label>
+                            <input type="date" class="form-control" id="dateVente" formControlName="dateVente">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="nbTranches">Nb de tranches</label>
+                            <input type="text" class="form-control" id="nbTranches" formControlName="nbTranches" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="dateFraicheur">Date de fraicheur</label>
+                            <input type="date" class="form-control" id="dateFraicheur" formControlName="dateFraicheur">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="epaisseurTranches">Épaisseurs des tranches</label>
+                            <input type="text" class="form-control" id="epaisseurTranches" formControlName="epaisseurTranches" readonly>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</form>

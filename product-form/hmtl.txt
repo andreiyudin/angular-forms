@@ -1,0 +1,207 @@
+<alert [alertMessage]="alertMessage"></alert>
+
+<form [formGroup]="productForm" (ngSubmit)="save(productForm)" novalidate>
+  <div class="container" style="width:100%;margin-top:1em">
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-secondary pull-left" [ngClass]="{'btn-success':productForm.valid&&productForm.dirty,'btn-secondary':productForm.pristine,'btn-danger':!productForm.valid&&productForm.touched }">
+          <i class="fa f fa-save"></i>
+        </button>
+      </div>
+      <div class="col">
+        <h3 class="text-center">Configuration SKU</h3>
+      </div>
+      <div class="col">
+        <div class="pull-right">
+          <button type="button" class="btn btn-secondary btn-delete" (click)="delete()" [disabled]="product.counts>0 || new">
+            <i class="fa f fa-trash fa-lg"></i>
+          </button>
+          <button type="button" [routerLink]="['../../list']" class="btn btn-secondary">
+            <i class="fa f fa-list fa-lg"></i>
+          </button>
+          <button type="button" (click)="addForm()" class="btn btn-secondary btn-add">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="margin-top:1em">
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <label>Type:
+            <!-- <label *ngFor="let productType of productTypes">
+              <input type="radio" formControleName="productType" [value]="productType">&nbsp;{{ productType }}&nbsp;&nbsp;
+            </label> -->
+            <label>
+                <input id="radioPetitePain" #radioPetitePain name="productType" type="radio" formControleName="productPetitePain" checked="checked">&nbsp;Petite Pain&nbsp;&nbsp;
+            </label>
+            <label>
+                <input id="radioGrosPain" #radioGrosPain name="productType" type="radio" formControleName="productGrosPain">&nbsp;Gros Pain&nbsp;&nbsp;
+            </label>
+        </label>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+          <h3 class="text-center">Priorite</h3>
+      </div>
+    </div>
+
+    <div class="form-group row" style="margin-top:1em">
+      <!-- *ngIf="productForm.productGrosPain"  -->
+        <!-- <div class="col-xs-12" *ngIf="productForm.productType === 'Petite Pain'"> -->
+        <div class="col-xs-12" *ngIf="radioGrosPain.checked">
+          <div class="form-inline">
+          <!-- <label *ngFor="let emballeuse of emballeusePetitePain">&nbsp;Emballeuse {{ emballeuse }}:&nbsp;
+            <input class="emballeuseInput" type="text" formControleName="emballeuse">&nbsp;&nbsp;
+          </label> -->
+            <label>&nbsp;Emballeuse 1:&nbsp;
+              <input class="emballeuseInput" type="text" formControleName="emballeuse1">&nbsp;&nbsp;
+            </label>
+            <label>&nbsp;Emballeuse 2:&nbsp;
+              <input class="emballeuseInput" type="text" formControleName="emballeuse2">&nbsp;&nbsp;
+            </label>
+            <label>&nbsp;Emballeuse 3:&nbsp;
+              <input class="emballeuseInput" type="text" formControleName="emballeuse3">&nbsp;&nbsp;
+            </label>
+            <label>&nbsp;Emballeuse 4:&nbsp;
+              <input class="emballeuseInput" type="text" formControleName="emballeuse4">&nbsp;&nbsp;
+            </label>
+           </div>
+        </div>
+        <!-- <div class="col-xs-12" *ngIf="!productType === 'Gros Pain'"> -->
+        <div class="col-xs-12" *ngIf="radioPetitePain.checked">
+            <div class="form-inline col-xs-12">
+            <!-- <label *ngFor="let emballeuse of emballeuseGrosPain">&nbsp;Emballeuse {{ emballeuse }}:&nbsp;
+              <input class="emballeuseInput" type="text" formControleName="emballeuse">&nbsp;&nbsp;
+            </label> -->
+              <label class="col-form-label" for="emballeuse6">Emballeuse 6:&nbsp;
+                <input id="emballeuse6" class="form-control col-4" type="text" formControleName="emballeuse6">
+              </label>
+              <label class="col-form-label" for="emballeuse7">Emballeuse 7:&nbsp;
+                <input id="emballeuse7" class="form-control col-4" type="text" formControleName="emballeuse7">
+              </label>
+              <label class="col-form-label" for="emballeuse8">Emballeuse 8:&nbsp;
+                <input id="emballeuse8" class="form-control col-4" type="text" formControleName="emballeuse8">
+              </label>
+              <label class="col-form-label" for="emballeuse9">Emballeuse 9:&nbsp;
+                <input id="emballeuse9" class="form-control col-4" type="text" formControleName="emballeuse9">
+              </label>
+              <label class="col-form-label" for="emballeuse10">Emballeuse 10:&nbsp;
+                <input id="emballeuse10" class="form-control col-4" type="text" formControleName="emballeuse10">
+              </label>
+              <label class="col-form-label" for="emballeuse11">Emballeuse 11:&nbsp;
+                <input id="emballeuse11" class="form-control col-4" type="text" formControleName="emballeuse11">
+              </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:2em">
+        <div class="col">
+            <h3 class="text-center">Autre Configurations</h3>
+        </div>
+    </div>
+    
+  <div class="container" style="margin-top:1em">
+    <div class="form-group row">
+        <label for="variete" class="col-4 col-form-label text-right">Variete:</label>
+        <div class="col-3">
+          <div>
+            <!-- <input type="text" id="variete" class="form-control" formControlName="variete"> -->
+            <select 
+              id="variete" 
+              formControlName="variete" 
+              class="form-control">
+              <option value="one">1</option>
+              <option value="two">2</option>
+              <option value="three">3</option>
+            </select>
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="hauteurTray" class="col-4 col-form-label text-right">Hauteur Tray:</label>
+        <div class="col-3">
+          <div>
+            <input type="text" id="hauteurTray" class="form-control" formControlName="hauteurTray">
+          </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="patron" class="col-4 col-form-label text-right">Patron d'emballage:</label>
+        <div class="col-3">
+          <div>
+            <input type="text" id="patron" class="form-control" formControlName="patron">
+          </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="quantiteEmballage" class="col-4 col-form-label text-right">Quantite par emballage:</label>
+        <div class="col-3">
+          <div>
+            <!-- <input type="text" id="quantiteEmballage" class="form-control" formControlName="quantiteEmballage"> -->
+            <select 
+              id="quantiteEmballage" 
+              formControlName="quantiteEmballage" 
+              class="form-control">
+              <option value="one">1</option>
+              <option value="two">2</option>
+              <option value="three">3</option>
+            </select>
+          </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="typeSac" class="col-4 col-form-label text-right">Type de sac:</label>
+        <div class="col-3">
+          <div>
+            <!-- <input type="text" id="typeSac" class="form-control" formControlName="typeSac"> -->
+            <select 
+              id="typeSac" 
+              formControlName="typeSac" 
+              class="form-control">
+              <option value="one">1</option>
+              <option value="two">2</option>
+              <option value="three">3</option>
+            </select>
+          </div>
+        </div>
+    </div>
+  </div>  
+
+
+    <!-- <div class="form-group row" [ngClass]="{'has-danger':!productForm.controls['productId'].valid && (productForm.controls['productId'].touched  ) }">
+      <label for="example-text-input" class="col-4 col-form-label text-right">*Produit Id:</label>
+      <div class="col-3">
+        <div>
+          <typeahead [typeaheadDisabled]="new==false" class="typeahead" formControlName="productId" [items]="products" [config]="{'shownProperty':'productId' , 'selectedProperty':'productId'}"></typeahead>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row" [ngClass]="{'has-danger':!productForm.controls['description'].valid && (productForm.controls['description'].touched  ) }">
+      <label for="example-text-input" class="col-4 col-form-label text-right">*Description:</label>
+      <div class="col-3">
+        <div>
+          <input type="text" class="form-control" formControlName="description" >
+        </div>
+      </div>
+    </div>
+    <div class="form-group row" [ngClass]="{'has-danger':!productForm.controls['productId'].valid && (productForm.controls['productId'].touched  ) }">
+      <label for="example-text-input" class="col-4 col-form-label text-right">Inactive:</label>
+      <div class="col-3">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" id="blankCheckbox" formControlName="inactive" style="vertical-align:middle"
+              value="option1" aria-label="...">
+          </label>
+        </div>
+      </div>
+    </div> -->
+
+
+  </div>
+</form>

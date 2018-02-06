@@ -1,0 +1,56 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+// import { CollectionsService } from '../../../shared/services/collections.service';
+import { ProductsService } from 'app/home/config-sys/products/db-services/products.service';
+
+@Component({
+  selector: 'app-order-form',
+  templateUrl: './order-form.component.html',
+  styleUrls: ['./order-form.component.css']
+})
+export class OrderFormComponent implements OnInit {
+  products: Array<any>;
+  orderForm: FormGroup;
+
+  constructor(private productService: ProductsService) { }
+
+  ngOnInit() {
+    this.createOrderForm();
+  }
+
+  createOrderForm() {
+    this.orderForm = new FormGroup(
+      {
+        emballeuse: new FormControl(''),
+        painsParPaquet: new FormControl(''),
+        produits: new FormControl('', Validators.required),
+        aire: new FormControl(''),
+        quantitePains: new FormControl('', Validators.required),
+        typeSac: new FormControl(''),
+        priorite: new FormControl(''),
+        patron: new FormControl(''),
+        couleurKwikLok: new FormControl(''),
+        variete: new FormControl(''),
+        dateProduction: new FormControl(''),
+        recette: new FormControl(''),
+        dateVente: new FormControl(''),
+        nbTranches: new FormControl(''),
+        dateFraicheur: new FormControl(''),
+        epaisseurTranches: new FormControl('')
+      }
+    );
+  }
+
+  save() {
+
+  }
+
+  addForm() {
+
+  }
+
+  delete() {
+
+  }
+
+}
