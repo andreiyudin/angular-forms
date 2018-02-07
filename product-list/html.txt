@@ -23,15 +23,14 @@
       </div>
     </div>
   </div>
-
-  <div class="container" style="margin-top:1em;margin:auto;width:90%">
+  <div class="container" style="margin-top:2em;width:90%">
     <div class="form-group row">
       <div class="col-xs-12">
         <label>
-            <input id="radioPetitePain" #radioPetitePain name="productType" type="radio" formControleName="productPetitePain" checked="checked">&nbsp;Petite Pain&nbsp;&nbsp;
+            <input id="radioBread" #breadType name="productType" type="radio" formControlName="breadType" value="1">&nbsp;Pain&nbsp;&nbsp;
         </label>
         <label>
-            <input id="radioGrosPain" #radioGrosPain name="productType" type="radio" formControleName="productGrosPain">&nbsp;Gros Pain&nbsp;&nbsp;
+            <input id="radioSmallBread" #breadType name="productType" type="radio" formControlName="breadType" value="2">&nbsp;Petit Pain&nbsp;&nbsp;
         </label>
       </div>
     </div>
@@ -64,165 +63,7 @@
         </tr>
       </tbody>
     </table> -->
-    <div class="form-group row" *ngIf="radioPetitePain.checked">
-      <div class="col-xs-12">
-          <div>
-              <h3 class="text-center">Variété 1</h3>
-          </div>
-      </div>
-      <table class="table table-striped table-bordered table-sm">
-          <thead class="thead-inverse">
-              <tr>
-                <th class="">SKU</th>
-                <th class="">Emballeuse 1</th>
-                <th class="">Emballeuse 2</th>
-                <th class="">Emballeuse 3</th>
-                <th class="">Emballeuse 4</th>
-                <th class="">Hauteur Tray</th>
-                <th class="">Largeur Tranche</th>
-                <th class="">Patron d'emballage</th>
-                <th class="">Date modifiée</th>
-              </tr>
-          </thead>
-          <tbody>
-            <tr class="text-center">
-              <td>44</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>55</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>66</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>88</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>99</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-          </tbody>
-      </table>
-
-      <div class="col-xs-12" style="margin-top:1em;">
-          <div>
-              <h3 class="text-center">Variété 2</h3>
-          </div>
-      </div>
-      <table class="table table-striped table-bordered table-sm">
-          <thead class="thead-inverse">
-              <tr>
-                <th class="">SKU</th>
-                <th class="">Emballeuse 1</th>
-                <th class="">Emballeuse 2</th>
-                <th class="">Emballeuse 3</th>
-                <th class="">Emballeuse 4</th>
-                <th class="">Hauteur Tray</th>
-                <th class="">Largeur Tranche</th>
-                <th class="">Patron d'emballage</th>
-                <th class="">Date modifiée</th>
-              </tr>
-          </thead>
-          <tbody>
-            <tr class="text-center">
-              <td>44</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>55</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>66</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>88</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-            <tr class="text-center">
-              <td>99</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>2017-01-01</td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-
-    <div class="form-group row" *ngIf="radioGrosPain.checked">
+    <div class="form-group row" *ngIf="productListForm.controls['breadType'].value=='1'">
         <div class="col-xs-12">
             <div>
                 <h3 class="text-center">Variété 1</h3>
@@ -230,19 +71,86 @@
         </div>
         <table class="table table-striped table-bordered table-sm">
             <thead class="thead-inverse">
-                <tr>
-                  <th class="">SKU</th>
-                  <th class="">Emballeuse 6</th>
-                  <th class="">Emballeuse 7</th>
-                  <th class="">Emballeuse 8</th>
-                  <th class="">Emballeuse 9</th>
-                  <th class="">Emballeuse 10</th>
-                  <th class="">Emballeuse 11</th>
-                  <th class="">Hauteur Tray</th>
-                  <th class="">Largeur Tranche</th>
-                  <th class="">Patron d'emballage</th>
-                  <th class="">Date modifiée</th>
-                </tr>
+              <tr>
+                <th>SKU</th>
+                <th>Emballeuse 1</th>
+                <th>Emballeuse 2</th>
+                <th>Emballeuse 3</th>
+                <th>Emballeuse 4</th>
+                <th>Hauteur Tray</th>
+                <th>Largeur Tranche</th>
+                <th>Patron d'emballage</th>
+                <th>Date modifiée</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let fakeSkuConfiguration of fakeSkuConfigurations;" class="text-center">
+                <td>{{fakeSkuConfiguration.productId}}</td>
+                <td>{{fakeSkuConfiguration.packer1}}</td>
+                <td>{{fakeSkuConfiguration.packer2}}</td>
+                <td>{{fakeSkuConfiguration.packer3}}</td>
+                <td>{{fakeSkuConfiguration.packer4}}</td>
+                <td>{{fakeSkuConfiguration.trayHeight}}</td>
+                <td>{{fakeSkuConfiguration.sliceWidth}}</td>
+                <td>{{fakeSkuConfiguration.patron}}</td>
+                <td>{{fakeSkuConfiguration.dateModified}}</td>
+              </tr>
+        </table>
+      <div class="col-xs-12">
+          <div>
+              <h3 class="text-center">Variété 2</h3>
+          </div>
+      </div>
+      <table class="table table-striped table-bordered table-sm">
+          <thead class="thead-inverse">
+            <tr>
+              <th>SKU</th>
+              <th>Emballeuse 1</th>
+              <th>Emballeuse 2</th>
+              <th>Emballeuse 3</th>
+              <th>Emballeuse 4</th>
+              <th>Hauteur Tray</th>
+              <th>Largeur Tranche</th>
+              <th>Patron d'emballage</th>
+              <th>Date modifiée</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fakeSkuConfiguration of filteredFakeProducts;" class="text-center">
+              <td>{{fakeSkuConfiguration.productId}}</td>
+              <td>{{fakeSkuConfiguration.packer1}}</td>
+              <td>{{fakeSkuConfiguration.packer2}}</td>
+              <td>{{fakeSkuConfiguration.packer3}}</td>
+              <td>{{fakeSkuConfiguration.packer4}}</td>
+              <td>{{fakeSkuConfiguration.trayHeight}}</td>
+              <td>{{fakeSkuConfiguration.sliceWidth}}</td>
+              <td>{{fakeSkuConfiguration.patron}}</td>
+              <td>{{fakeSkuConfiguration.dateModified}}</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    <div class="form-group row" *ngIf="productListForm.controls['breadType'].value=='2'">
+        <div class="col-xs-12">
+            <div>
+                <h3 class="text-center">Variété 1</h3>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-inverse">
+              <tr>
+                <th>SKU</th>
+                <th>Emballeuse 6</th>
+                <th>Emballeuse 7</th>
+                <th>Emballeuse 8</th>
+                <th>Emballeuse 9</th>
+                <th>Emballeuse 10</th>
+                <th>Emballeuse 11</th>
+                <th>Hauteur Tray</th>
+                <th>Largeur Tranche</th>
+                <th>Patron d'emballage</th>
+                <th>Date modifiée</th>
+              </tr>
             </thead>
             <tbody>
               <tr class="text-center">
@@ -267,19 +175,19 @@
         </div>
         <table class="table table-striped table-bordered table-sm">
             <thead class="thead-inverse">
-                <tr>
-                  <th class="">SKU</th>
-                  <th class="">Emballeuse 6</th>
-                  <th class="">Emballeuse 7</th>
-                  <th class="">Emballeuse 8</th>
-                  <th class="">Emballeuse 9</th>
-                  <th class="">Emballeuse 10</th>
-                  <th class="">Emballeuse 11</th>
-                  <th class="">Hauteur Tray</th>
-                  <th class="">Largeur Tranche</th>
-                  <th class="">Patron d'emballage</th>
-                  <th class="">Date modifiée</th>
-                </tr>
+              <tr>
+                <th>SKU</th>
+                <th>Emballeuse 6</th>
+                <th>Emballeuse 7</th>
+                <th>Emballeuse 8</th>
+                <th>Emballeuse 9</th>
+                <th>Emballeuse 10</th>
+                <th>Emballeuse 11</th>
+                <th>Hauteur Tray</th>
+                <th>Largeur Tranche</th>
+                <th>Patron d'emballage</th>
+                <th>Date modifiée</th>
+              </tr>
             </thead>
             <tbody>
               <tr class="text-center">
@@ -298,7 +206,6 @@
             </tbody>
         </table>        
     </div>
-
   </div>
 </div>
 </form>

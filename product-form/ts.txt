@@ -38,53 +38,45 @@ export class ProductsFormComponent implements OnInit {
   }
 
   setProductsForm(product) {
-    this.productForm.controls['productId'].setValue(product.productId);
-    this.productForm.controls['productPetitePain'].setValue(product.productPetitePain);
-    this.productForm.controls['productGrosPain'].setValue(product.productGrosPain);
-    this.productForm.controls['emballeuse1'].setValue(product.emballeuse1);
-    this.productForm.controls['emballeuse2'].setValue(product.emballeuse2);
-    this.productForm.controls['emballeuse3'].setValue(product.emballeuse3);
-    this.productForm.controls['emballeuse4'].setValue(product.emballeuse4);
-    this.productForm.controls['emballeuse5'].setValue(product.emballeuse5);
-    this.productForm.controls['emballeuse6'].setValue(product.emballeuse6);
-    this.productForm.controls['emballeuse7'].setValue(product.emballeuse7);
-    this.productForm.controls['emballeuse8'].setValue(product.emballeuse8);
-    this.productForm.controls['emballeuse9'].setValue(product.emballeuse9);
-    this.productForm.controls['emballeuse10'].setValue(product.emballeuse10);
-    this.productForm.controls['emballeuse11'].setValue(product.emballeuse11);
-    this.productForm.controls['variete'].setValue(product.variete);
-    this.productForm.controls['hauteurTray'].setValue(product.hauteurTray);
+    this.productForm.controls['breadType'].setValue(product.breadType);
+    this.productForm.controls['packer1'].setValue(product.packer1);
+    this.productForm.controls['packer2'].setValue(product.packer2);
+    this.productForm.controls['packer3'].setValue(product.packer3);
+    this.productForm.controls['packer4'].setValue(product.packer4);
+    this.productForm.controls['packer5'].setValue(product.packer5);
+    this.productForm.controls['packer6'].setValue(product.packer6);
+    this.productForm.controls['packer7'].setValue(product.packer7);
+    this.productForm.controls['packer8'].setValue(product.packer8);
+    this.productForm.controls['packer9'].setValue(product.packer9);
+    this.productForm.controls['packer10'].setValue(product.packer10);
+    this.productForm.controls['packer11'].setValue(product.packer11);
+    this.productForm.controls['variety'].setValue(product.variety);
+    this.productForm.controls['trayHeight'].setValue(product.trayHeight);
     this.productForm.controls['patron'].setValue(product.patron);
-    this.productForm.controls['quantiteEmballage'].setValue(product.quantiteEmballage);
-    this.productForm.controls['typeSac'].setValue(product.typeSac);
-    this.productForm.controls['inactive'].setValue(product.inactive);
-    this.productForm.controls['description'].setValue(product.description);
+    this.productForm.controls['quantityPackage'].setValue(product.quantityPackage);
+    this.productForm.controls['bagType'].setValue(product.bagType);
   }
 
   createProductsForm() {
     this.productForm = new FormGroup(
       {
-        productId: new FormControl('', this.isProductIdNotExist.bind(this)),
-        productPetitePain: new FormControl(''),
-        productGrosPain: new FormControl(''),
-        emballeuse1: new FormControl(''),
-        emballeuse2: new FormControl(''),
-        emballeuse3: new FormControl(''),
-        emballeuse4: new FormControl(''),
-        emballeuse5: new FormControl(''),
-        emballeuse6: new FormControl(''),
-        emballeuse7: new FormControl(''),
-        emballeuse8: new FormControl(''),
-        emballeuse9: new FormControl(''),
-        emballeuse10: new FormControl(''),
-        emballeuse11: new FormControl(''),
-        variete: new FormControl('', Validators.required),
-        hauteurTray: new FormControl('', Validators.required),
+        breadType: new FormControl('2'),
+        packer1: new FormControl(''),
+        packer2: new FormControl(''),
+        packer3: new FormControl(''),
+        packer4: new FormControl(''),
+        packer5: new FormControl(''),
+        packer6: new FormControl(''),
+        packer7: new FormControl(''),
+        packer8: new FormControl(''),
+        packer9: new FormControl(''),
+        packer10: new FormControl(''),
+        packer11: new FormControl(''),
+        variety: new FormControl('', Validators.required),
+        trayHeight: new FormControl('', Validators.required),
         patron: new FormControl('', Validators.required),
-        quantiteEmballage: new FormControl('', Validators.required),
-        typeSac: new FormControl('', Validators.required),
-        description: new FormControl('', Validators.required),
-        inactive: new FormControl('', Validators.nullValidator)
+        quantityPackage: new FormControl('', Validators.required),
+        bagType: new FormControl('', Validators.required)
       }
     );
   }

@@ -15,14 +15,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ProductsListComponent implements OnInit {
 
   products: Array<any>;
+  fakeProducts: Array<any>;
+  fakeSkuConfigurations: Array<any>;
   filteredProducts: Array<any>;
+  filteredFakeProducts: Array<any>;
   moment = moment;
   toUpdate: boolean;
   productListForm: FormGroup;
 
   filters = {
     productId: '',
-    inactive: false
+    inactive: false,
   };
 
   alertMessage: any = {
@@ -33,20 +36,19 @@ export class ProductsListComponent implements OnInit {
   constructor(private productService: ProductsService, private collectionsService: CollectionsService) { }
 
   ngOnInit() {
-    // this.getData();
+    this.getData();
+    this.getFakeData();
     this.createProductListForm();
   }
 
   setProductListForm(product) {
-    this.productListForm.controls['productPetitePain'].setValue(product.productPetitePain);
-    this.productListForm.controls['productGrosPain'].setValue(product.productGrosPain);
+    this.productListForm.controls['breadType'].setValue(product.breadType);
   }
 
   createProductListForm() {
     this.productListForm = new FormGroup(
       {
-        productPetitePain: new FormControl(''),
-        productGrosPain: new FormControl(''),
+        breadType: new FormControl('1'),
       }
     );
   }
@@ -70,6 +72,24 @@ export class ProductsListComponent implements OnInit {
 
   }
 
+  filterVar1() {
+
+    if (this.filters.inactive) {
+      this.filteredFakeProducts = this.fakeProducts;
+    } else {
+      this.filteredFakeProducts = _.filter(this.fakeProducts, (o) => { return o.inactive != true });
+    }
+
+    this.filteredFakeProducts = _.filter(this.filteredFakeProducts, (product) => {
+      var res: boolean;
+      if (this.collectionsService.isObjectFilled(this.filters, ["inactive"])) {
+        return this.collectionsService.filterObjectProperties(product, this.collectionsService.contains, this.filters, ["inactive"]);
+      } else {
+        return true;
+      }
+    });
+
+  }
 
   filterPeriod() {
     this.getData();
@@ -84,27 +104,16 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
+  getFakeData() {
+    this.fakeProducts = this.productService.getFakeProducts2();
+    this.fakeSkuConfigurations = this.productService.getFakeConfigurationSku();
+    this.filteredFakeProducts = this.productService.getFakeProducts2();
+    this.filterVar1();
+  }
+
   eraseFilter() {
     this.collectionsService.eraseProperties(this.filters, ["from", "to"]);
     this.filter();
-  }
-
-  @HostListener('dragstart', ['$event'])
-  onDragStart(event) {
-    if (event["srcElement"]["attributes"]["position"]) {
-      let srcPosition = event.srcElement.attributes.position.value;
-      event.dataTransfer.setData('item', srcPosition);
-    }
-  }
-
-  @HostListener('drop', ['$event']) onDrop(event) {
-    let srcPosition = parseInt(event.dataTransfer.getData('item'));
-    if (event["srcElement"]["parentElement"]["attributes"]["position"] && !isNaN(srcPosition)) {
-      let destPosition = parseInt(event.srcElement.parentElement.attributes.position.value);
-      this.toUpdate = true;
-      this.products = this.collectionsService.changePosition(this.products, "position", srcPosition, destPosition);
-      this.filter();
-    }
   }
 
   stopPropagation(event) {

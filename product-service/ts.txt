@@ -1,0 +1,269 @@
+import { Injectable } from '@angular/core';
+import { Headers, Http, Response } from "@angular/http";
+import { Observable } from "rxjs/Rx";
+import * as moment from 'moment/moment';
+
+import 'rxjs/Rx';
+
+@Injectable()
+export class ProductsService {
+  private headers = new Headers;
+
+  constructor(private http: Http) {
+
+  }
+
+  getProducts() {
+    var res = this.http.get('products', { headers: this.headers }).map((response: Response) => this.adjustDateTime(response));
+    return res;
+  }
+  
+  getProductById(id) {
+    var res = this.http.get('product/' + id, { headers: this.headers }).map((response: Response) => response.json());
+    return res;
+  }
+
+  adjustDateTime(products) {
+    products = products.json();
+
+    products.forEach(product => {
+      product.datetime = moment(product.datetime).format("YYYY-MM-DD HH:mm");
+    });
+
+    return products;
+  }
+
+  create(form) {
+    const body = JSON.stringify(form);
+    const headers = new Headers();
+    return this.http.post('product', body, {
+      headers: headers
+    }).map((data: Response) => data.json()).catch(this.handleError);
+  }
+
+  update(form) {
+    const body = JSON.stringify(form);
+    const headers = new Headers();
+    return this.http.put('product', body, {
+      headers: headers
+    }).map((data: Response) => data.json()).catch(this.handleError);
+  }
+
+  updateMany(products) {
+    const body = JSON.stringify(products);
+    const headers = new Headers();
+    return this.http.put('products', body, {
+      headers: headers
+    }).map((data: Response) => data.json()).catch(this.handleError);
+  }
+
+  delete(id) {
+    const headers = new Headers();
+    return this.http.delete('product' + "/" + id, {
+      headers: headers
+    }).map((data: Response) => data.json()).catch(this.handleError);
+  }
+
+
+  private handleError(error: any) {
+    return Observable.throw(error.json());
+  }
+
+  // [ https://www.json-generator.com/ 
+  //   '{{repeat(10, 10)}}',
+  //   {   
+  //     productId:'{{integer(100,500)}}',
+  //   }
+  // ]
+
+  getFakeProducts() {
+    return [
+      {
+        "productId": 101,
+        "description": '',
+        "type": 1,
+        "variety": 1,
+        "inactive":true
+      },
+      {
+        "productId": 100,
+        "inactive":true
+      },
+      {
+        "productId": 100,
+        "inactive":true
+      },
+      {
+        "productId": 102,
+        "inactive":false
+      },
+      {
+        "productId": 101,
+        "inactive":false
+      },
+      {
+        "productId": 102,
+        "inactive":false
+      },
+      {
+        "productId": 102,
+        "inactive":false
+      },
+      {
+        "productId": 100,
+        "inactive":false
+      },
+      {
+        "productId": 100,
+        "inactive":false
+      },
+      {
+        "productId": 104,
+        "inactive":false
+      }
+    ]
+  }
+
+  getFakeProducts2() {
+    return [
+      {
+        'productId': 100,
+        'description': 'des100',
+        'type': 1,
+        'variety': 1,
+        'inactive': false
+      },
+      {
+        'productId': 101,
+        'description': 'des101',
+        'type': 1,
+        'variety': 2,
+        'inactive': true
+      },
+      {
+        'productId': 102,
+        'description': 'des102',
+        'type': 1,
+        'variety': 1,
+        'inactive': false
+      },
+      {
+        'productId': 103,
+        'description': 'des103',
+        'type': 1,
+        'variety': 1,
+        'inactive': true
+      },
+      {
+        'productId': 104,
+        'description': 'des104',
+        'type': 1,
+        'variety': 2,
+        'inactive': false
+      },
+      {
+        'productId': 105,
+        'description': 'des105',
+        'type': 1,
+        'variety': 1,
+        'inactive': true
+      },
+      {
+        'productId': 106,
+        'description': 'des106',
+        'type': 1,
+        'variety': 1,
+        'inactive': false
+      },
+      {
+        'productId': 107,
+        'description': 'des107',
+        'type': 1,
+        'variety': 2,
+        'inactive': true
+      },
+      {
+        'productId': 108,
+        'description': 'des108',
+        'type': 1,
+        'variety': 1,
+        'inactive': false
+      },
+      {
+        'productId': 109,
+        'description': 'des109',
+        'type': 1,
+        'variety': 2,
+        'inactive': true
+      }
+    ]
+  }
+
+  getFakeConfigurationSku() {
+    return [
+      {
+        'variety': 1,
+        'productId': 44,
+        'packer1': 1,
+        'packer2': 2,
+        'packer3': 3,
+        'packer4': 4,
+        'trayHeight': 1,
+        'sliceWidth': 2,
+        'patron': 3,
+        'dateModified': '2017-01-01'
+      },
+      {
+        'variety': 1,
+        'productId': 55,
+        'packer1': 1,
+        'packer2': 2,
+        'packer3': 3,
+        'packer4': 4,
+        'trayHeight': 1,
+        'sliceWidth': 2,
+        'patron': 3,
+        'dateModified': '2017-01-01'
+      },
+      {
+        'variety': 1,
+        'productId': 66,
+        'packer1': 1,
+        'packer2': 2,
+        'packer3': 3,
+        'packer4': 4,
+        'trayHeight': 1,
+        'sliceWidth': 2,
+        'patron': 3,
+        'dateModified': '2017-01-01'
+      },
+      {
+        'variety': 1,
+        'productId': 88,
+        'packer1': 1,
+        'packer2': 2,
+        'packer3': 3,
+        'packer4': 4,
+        'trayHeight': 1,
+        'sliceWidth': 2,
+        'patron': 3,
+        'dateModified': '2017-01-01'
+      },
+      {
+        'variety': 1,
+        'productId': 99,
+        'packer1': 1,
+        'packer2': 2,
+        'packer3': 3,
+        'packer4': 4,
+        'trayHeight': 1,
+        'sliceWidth': 2,
+        'patron': 3,
+        'dateModified': '2017-01-01'
+      }
+    ]
+  }
+
+
+
+}
